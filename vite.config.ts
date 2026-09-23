@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './', // Soporta subdirectorios como GitHub Pages (/holding-capara/) y dominios raíz
+  // En GitHub Pages se aloja en /holding-capara/; en Render o local usa './'
+  base: process.env.GITHUB_ACTIONS ? '/holding-capara/' : './',
   plugins: [
     // Tailwind CSS v4 nativo: sin PostCSS, motor Oxide (Rust)
     tailwindcss(),
