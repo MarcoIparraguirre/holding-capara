@@ -16,7 +16,7 @@ export default function Header({ onOpenModal }: HeaderProps) {
         <div className="flex items-center gap-4">
           {/* Logo principal (logo5) */}
           <img
-            src="./logo.png"
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="Marcela Capará — Innovación Inmobiliaria"
             className="h-9 w-auto"
             loading="eager"

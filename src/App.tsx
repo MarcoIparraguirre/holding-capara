@@ -98,7 +98,7 @@ export default function App() {
       <Header onOpenModal={(type) => openModal(type)} />
 
       {/* ── 2. Main content area ──────────────────────────────── */}
-      <main className="relative flex-1 overflow-hidden" style={{ minHeight: '55vmin' }}>
+      <main className="relative w-full h-[50vh] md:h-auto md:flex-1 overflow-hidden">
         {/* Background hero slider (fills entire main area) */}
         <HeroSlider currentSlide={currentSlide} onSlideChange={setCurrentSlide} />
 
