@@ -22,3 +22,7 @@ Minimalismo institucional de lujo, arquitectura contemporánea y sutileza patrim
 ## Reglas de Comportamiento
 - Los cambios entre divisiones solo alteran con sutileza la imagen de fondo, el tag superior, los títulos y el contenido del modal.
 - No romper la coherencia cromática: la base general se mantiene en tinto, blanco y neutros.
+
+## Regla de Verificación de Versiones y Documentación
+- Antes de proponer o instalar dependencias, consulta el MCP de documentación (Context7) para confirmar la versión estable más reciente (LTS).
+- Consulta siempre la documentación oficial actualizada de las librerías seleccionadas para evitar usar sintaxis o métodos deprecados.

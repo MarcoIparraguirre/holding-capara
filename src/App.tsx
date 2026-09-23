@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Header from './components/Header'
 import HeroSlider from './components/HeroSlider'
 import FloatingCard from './components/FloatingCard'
@@ -18,23 +18,65 @@ export type ModalType =
   | 'contact'
   | null
 
+// ─── Hash <-> ModalType mapping ───────────────────────────────────────────────
+const HASH_TO_MODAL: Record<string, ModalType> = {
+  '#real-estate': 'division-0',
+  '#inversiones':  'division-1',
+  '#seguros':      'division-2',
+  '#acerca-de':    'about',
+  '#contacto':     'contact',
+}
+const MODAL_TO_HASH: Record<string, string> = {
+  'division-0': '#real-estate',
+  'division-1': '#inversiones',
+  'division-2': '#seguros',
+  'about':      '#acerca-de',
+  'contact':    '#contacto',
+}
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [modal, setModal] = useState<ModalType>(null)
 
-  // Lock body scroll while any modal is open
+  // ── Estado inicial del modal leído desde el hash de la URL ──
+  const getModalFromHash = (): ModalType =>
+    HASH_TO_MODAL[window.location.hash] ?? null
+
+  const [modal, setModal] = useState<ModalType>(getModalFromHash)
+
+  // ── Sincronizar hash → estado cuando el usuario usa Atrás/Adelante ──
   useEffect(() => {
-    document.body.style.overflow = modal ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
+    const handlePopState = () => {
+      setModal(getModalFromHash())
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  // ── Abrir modal: actualiza estado + agrega entrada al historial ──
+  const openModal = useCallback((type: ModalType) => {
+    if (!type) return
+    const hash = MODAL_TO_HASH[type] ?? ''
+    // pushState agrega una entrada: el botón "Atrás" cierra el modal
+    window.history.pushState({ modal: type }, '', hash)
+    setModal(type)
+  }, [])
+
+  // ── Cerrar modal: regresa en el historial (activa popstate) ──
+  const closeModal = useCallback(() => {
+    if (modal) {
+      window.history.back()
     }
   }, [modal])
 
+  // ── Bloqueo de scroll body mientras hay modal abierto ──
+  useEffect(() => {
+    document.body.style.overflow = modal ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [modal])
+
   const openDivisionModal = (index: number) =>
-    setModal(`division-${index}` as ModalType)
-  const openModal = (type: 'about' | 'contact') => setModal(type)
-  const closeModal = () => setModal(null)
+    openModal(`division-${index}` as ModalType)
 
   // Extract division index from modal key
   const divisionIndex: number | null = modal?.startsWith('division-')
@@ -53,7 +95,7 @@ export default function App() {
      */
     <div className="flex flex-col min-h-screen md:h-screen md:overflow-hidden bg-white">
       {/* ── 1. Header ─────────────────────────────────────────── */}
-      <Header onOpenModal={openModal} />
+      <Header onOpenModal={(type) => openModal(type)} />
 
       {/* ── 2. Main content area ──────────────────────────────── */}
       <main className="relative flex-1 overflow-hidden" style={{ minHeight: '55vmin' }}>
@@ -82,16 +124,16 @@ export default function App() {
 
       {/* ── Modals ────────────────────────────────────────────── */}
       {modal && (
-        <ModalContainer onClose={closeModal}>
+        <ModalContainer onClose={closeModal} modalId={modal}>
           {modal === 'about' && (
-            <AboutModal onClose={closeModal} onContact={() => setModal('contact')} />
+            <AboutModal onClose={closeModal} onContact={() => openModal('contact')} />
           )}
           {modal === 'contact' && <ContactModal onClose={closeModal} />}
           {divisionIndex !== null && divisionIndex >= 0 && (
             <DivisionModal
               division={DIVISIONS[divisionIndex]}
               onClose={closeModal}
-              onContact={() => setModal('contact')}
+              onContact={() => openModal('contact')}
             />
           )}
         </ModalContainer>

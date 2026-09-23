@@ -1,5 +1,5 @@
 import { ExternalLink, MessageSquare } from 'lucide-react'
-import { Division } from '../data/content'
+import type { Division } from '../data/content'
 
 // ─── DivisionModal ────────────────────────────────────────────────────────────
 // Modal de detalle de una división.

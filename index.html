@@ -4,20 +4,92 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Capará Holding — Grupo empresarial líder en Real Estate, Inversiones y Seguros. Portal institucional." />
+    <meta name="description" content="Capará Holding — Grupo empresarial líder en Real Estate corporativo, Inversiones patrimoniales y Seguros & Coberturas. Portal institucional." />
     <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Capará Holding — Portal Institucional" />
     <meta property="og:description" content="Grupo empresarial líder en Real Estate corporativo, Inversiones patrimoniales y Seguros & Coberturas." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://caparaholding.com" />
+    <meta property="og:image" content="https://caparaholding.com/hero-realestate.webp" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Capará Holding — Portal Institucional" />
+    <meta name="twitter:description" content="Grupo empresarial líder en Real Estate, Inversiones y Seguros." />
+    <meta name="twitter:image" content="https://caparaholding.com/hero-realestate.webp" />
+
     <title>Capará Holding — Portal Institucional</title>
 
-    <!-- Google Fonts: Roboto Condensed, Barlow Condensed, Barlow Semi Condensed, Inter, Great Vibes -->
+    <!-- ── LCP Preload: primera imagen del hero ─────────────
+         Carga la imagen del slide inicial antes de que React
+         hidrate, mejorando el Largest Contentful Paint a < 1s.
+    ─────────────────────────────────────────────────────── -->
+    <link rel="preload" as="image" href="/hero-realestate.webp" fetchpriority="high" />
+
+    <!-- Google Fonts: Roboto Condensed, Barlow Condensed, Inter, Great Vibes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow+Semi+Condensed:wght@300;400&family=Inter:wght@400;500;600&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
+
+    <!-- ── Schema.org JSON-LD — GEO/SEO Estructurado ────────
+         Declara "Capará Holding" como Corporation con sus 3
+         divisiones subsidiarias. Permite a Google, ChatGPT,
+         Perplexity y otros motores de IA identificar la
+         estructura del holding y sus dominios.
+    ─────────────────────────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "Capará Holding",
+      "alternateName": "Marcela Capará Holding",
+      "description": "Grupo empresarial de capitales privados orientado al desarrollo patrimonial integral, con operaciones en Real Estate corporativo, Inversiones patrimoniales y Seguros & Coberturas.",
+      "url": "https://caparaholding.com",
+      "logo": "https://caparaholding.com/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. del Libertador 1234, Piso 10",
+        "addressLocality": "Ciudad Autónoma de Buenos Aires",
+        "addressRegion": "CABA",
+        "addressCountry": "AR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "institucional@caparaholding.com",
+        "telephone": "+54-011-4800-0000",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish"
+      },
+      "subOrganization": [
+        {
+          "@type": "RealEstateAgent",
+          "name": "Capará Real Estate",
+          "description": "Comercialización de proyectos residenciales y corporativos premium. Desarrollos en pozo, proyectos llave en mano y propiedades exclusivas.",
+          "url": "https://realestate.caparaholding.com",
+          "areaServed": "Argentina"
+        },
+        {
+          "@type": "FinancialService",
+          "name": "Capará Inversiones",
+          "description": "Fondos de inversión inmobiliaria, capital privado, pool de rentas y análisis de riesgo patrimonial con rentabilidad optimizada.",
+          "url": "https://inversiones.caparaholding.com",
+          "areaServed": "Argentina"
+        },
+        {
+          "@type": "InsuranceAgency",
+          "name": "Capará Seguros & Coberturas",
+          "description": "Coberturas patrimoniales, salud y vida internacional, pólizas corporativas y planificación sucesoria fiduciaria.",
+          "url": "https://seguros.caparaholding.com",
+          "areaServed": "Argentina"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,4 +1,4 @@
-import { Division } from '../data/content'
+import type { Division } from '../data/content'
 
 // ─── FloatingCard ─────────────────────────────────────────────────────────────
 // Tarjeta flotante institucional.

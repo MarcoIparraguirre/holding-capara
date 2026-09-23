@@ -1,8 +1,84 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ─── Tailwind CSS v4 ────────────────────────────────────── */
+@import "tailwindcss";
 
-/* ─── CSS Custom Properties ─────────────────────────────── */
+/* ─── Design Tokens (Capará Holding — design.md) ────────── */
+/*
+ * En Tailwind v4, todos los tokens se declaran en @theme.
+ * Reemplaza tailwind.config.js por completo.
+ * Las utilidades se generan automáticamente:
+ *   --color-wine → bg-wine, text-wine, border-wine
+ *   --font-condensed → font-condensed
+ *   --shadow-card → shadow-card
+ */
+@theme {
+  /* ── Colores de marca ─────────────────────────────────── */
+  --color-wine:               #8C0719;
+  --color-red-primary:        #BA071F;
+  --color-soft-blush:         #F2DBD5;
+  --color-gray-light:         #C9C8C8;
+  --color-gray-mid:           #A2A2A2;
+  --color-gray-dark:          #666666;
+  --color-surface:            #FFF8F7;
+  --color-on-surface:         #281716;
+  --color-on-surface-variant: #5C403E;
+  --color-outline-variant:    #E5BDBA;
+  --color-primary:            #8F0014;
+
+  /* ── Tipografía ───────────────────────────────────────── */
+  --font-condensed:  "Roboto Condensed", sans-serif;
+  --font-barlow:     "Barlow Condensed", sans-serif;
+  --font-barlow-semi:"Barlow Semi Condensed", sans-serif;
+  --font-sans:       Inter, system-ui, sans-serif;
+  --font-signature:  "Great Vibes", cursive;
+
+  /* ── Espaciado personalizado ──────────────────────────── */
+  --spacing-gutter:   1.5rem;
+  --spacing-margin:   2rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2.5rem;
+
+  /* ── Radio de borde ───────────────────────────────────── */
+  --radius-sm:   0.125rem;
+  --radius:      0.25rem;
+  --radius-md:   0.375rem;
+  --radius-lg:   0.5rem;
+  --radius-xl:   0.75rem;
+  --radius-full: 9999px;
+
+  /* ── Max Width ────────────────────────────────────────── */
+  --width-2xl: 50rem;
+
+  /* ── Sombras ──────────────────────────────────────────── */
+  --shadow-card:       0 20px 40px -15px rgba(0,0,0,0.07);
+  --shadow-card-hover: 0 24px 48px -12px rgba(0,0,0,0.13);
+  --shadow-modal:      0 25px 50px -12px rgba(0,0,0,0.35);
+
+  /* ── Tracking / Letter Spacing ────────────────────────── */
+  --tracking-widest: 0.15em;
+
+  /* ── Animaciones ──────────────────────────────────────── */
+  --animate-fade-in:     fadeIn 0.35s ease-out;
+  --animate-backdrop-in: backdropIn 0.2s ease-out;
+  --animate-modal-in:    modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes backdropIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1);    }
+  }
+}
+
+/* ─── CSS Custom Properties (compatibilidad JS runtime) ─── */
 :root {
   --wine:        #8C0719;
   --red-primary: #BA071F;
@@ -14,7 +90,7 @@
   --on-surface:  #281716;
 }
 
-/* ─── Base Reset ─────────────────────────────────────────── */
+/* ─── Base Global ────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -29,7 +105,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   background-color: var(--surface);
   color: var(--on-surface);
   -webkit-font-smoothing: antialiased;
@@ -41,7 +117,7 @@ body {
   flex-direction: column;
 }
 
-/* ─── Desktop: locked viewport (no scroll) ───────────────── */
+/* ─── Desktop: viewport bloqueado (sin scroll de body) ──── */
 @media (min-width: 768px) {
   html,
   body,
@@ -51,7 +127,7 @@ body {
   }
 }
 
-/* ─── Hero slider image fade ─────────────────────────────── */
+/* ─── Hero slider crossfade ──────────────────────────────── */
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -59,7 +135,7 @@ body {
   will-change: opacity;
 }
 
-/* ─── Hide scrollbar for modals ─────────────────────────── */
+/* ─── Ocultar scrollbar en modales ──────────────────────── */
 .modal-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -70,13 +146,13 @@ body {
   height: 0;
 }
 
-/* ─── Focus styles ───────────────────────────────────────── */
+/* ─── Focus visible institucional ───────────────────────── */
 :focus-visible {
   outline: 2px solid var(--wine);
   outline-offset: 2px;
 }
 
-/* ─── Select arrow override ─────────────────────────────── */
+/* ─── Select: flecha personalizada ──────────────────────── */
 select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");

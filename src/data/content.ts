@@ -38,7 +38,7 @@ export const DIVISIONS: Division[] = [
     titleLine2: 'INMOBILIARIA',
     description:
       'Gestión y comercialización de proyectos residenciales y corporativos premium. Desarrollo de arquitectura con identidad y valor proyectado a largo plazo.',
-    bgImage: '/hero-realestate.jpg',
+    bgImage: '/hero-realestate.webp',
     modal: {
       summary:
         'Soluciones de comercialización, desarrollos en pozo, proyectos llave en mano y propiedades exclusivas con el más alto estándar arquitectónico y urbanístico.',
@@ -76,7 +76,7 @@ export const DIVISIONS: Division[] = [
     titleLine2: 'ESTRATÉGICAS',
     description:
       'Estructuración de vehículos de inversión inmobiliaria y participación patrimonial con rentabilidad optimizada y respaldo en activos reales tangibles.',
-    bgImage: '/hero-inversiones.jpg',
+    bgImage: '/hero-inversiones.webp',
     modal: {
       summary:
         'Fondos de inversión inmobiliaria, capital privado, pool de rentas y análisis de riesgo patrimonial con rentabilidad optimizada y gestión institucional de excelencia.',
@@ -114,7 +114,7 @@ export const DIVISIONS: Division[] = [
     titleLine2: 'COBERTURAS',
     description:
       'Protección integral de patrimonio familiar, coberturas de vida, salud internacional de primer orden y estructuración fiduciaria de pólizas para sucesión intergeneracional blindada.',
-    bgImage: '/hero-seguros.jpg',
+    bgImage: '/hero-seguros.webp',
     modal: {
       summary:
         'Coberturas patrimoniales, salud y vida internacional, pólizas corporativas y planificación sucesoria fiduciaria para una protección blindada en todas las etapas de la vida.',

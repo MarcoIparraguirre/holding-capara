@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { CONTACT_INFO } from '../data/content'
 
