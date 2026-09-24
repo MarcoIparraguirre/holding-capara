@@ -13,6 +13,7 @@ export interface Division {
   titleLine2: string
   description: string
   bgImage: string
+  imagePosition?: string // Encuadre CSS object-position (ej: 'center 40%', '50% 30%')
   modal: {
     summary: string
     pillars: DivisionPillar[]
@@ -37,8 +38,9 @@ export const DIVISIONS: Division[] = [
     titleLine1: 'INNOVACIÓN',
     titleLine2: 'INMOBILIARIA',
     description:
-      'Gestión y comercialización de proyectos residenciales y corporativos premium. Desarrollo de arquitectura con identidad y valor proyectado a largo plazo.',
+      'Gestión y desarrollo de proyectos residenciales y corporativos premium con identidad y valor a largo plazo.',
     bgImage: `${import.meta.env.BASE_URL}hero-realestate.webp`,
+    imagePosition: '60% 40%', // Ajusta aquí: X (horizontal) Y (vertical). Ej: 'center 30%', '50% 40%'
     modal: {
       summary:
         'Soluciones de comercialización, desarrollos en pozo, proyectos llave en mano y propiedades exclusivas con el más alto estándar arquitectónico y urbanístico.',
@@ -75,8 +77,9 @@ export const DIVISIONS: Division[] = [
     titleLine1: 'INVERSIONES',
     titleLine2: 'ESTRATÉGICAS',
     description:
-      'Estructuración de vehículos de inversión inmobiliaria y participación patrimonial con rentabilidad optimizada y respaldo en activos reales tangibles.',
+      'Vehículos de inversión inmobiliaria y participación patrimonial con rentabilidad optimizada y respaldo en activos reales.',
     bgImage: `${import.meta.env.BASE_URL}hero-inversiones.webp`,
+    imagePosition: '95% 45%', // Ajusta aquí: X (horizontal) Y (vertical). Ej: 'center center', 'center 40%'
     modal: {
       summary:
         'Fondos de inversión inmobiliaria, capital privado, pool de rentas y análisis de riesgo patrimonial con rentabilidad optimizada y gestión institucional de excelencia.',
@@ -113,8 +116,9 @@ export const DIVISIONS: Division[] = [
     titleLine1: 'SEGUROS &',
     titleLine2: 'COBERTURAS',
     description:
-      'Protección integral de patrimonio familiar, coberturas de vida, salud internacional de primer orden y estructuración fiduciaria de pólizas para sucesión intergeneracional blindada.',
+      'Protección integral de patrimonio familiar, coberturas de vida y estructuración fiduciaria sucesoria blindada.',
     bgImage: `${import.meta.env.BASE_URL}hero-seguros.webp`,
+    imagePosition: 'center 45%', // Ajusta aquí: X (horizontal) Y (vertical). Ej: 'center 50%', 'center 35%'
     modal: {
       summary:
         'Coberturas patrimoniales, salud y vida internacional, pólizas corporativas y planificación sucesoria fiduciaria para una protección blindada en todas las etapas de la vida.',

@@ -91,14 +91,14 @@ export default function App() {
      *   3. Footer  (fixed-height, flex-shrink-0)
      *
      * Desktop (md+): h-screen overflow-hidden → locked single-page viewport.
-     * Mobile (<md) : min-h-screen, body scrolls naturally.
+     * Mobile (<md) : min-h-screen, hero arriba y tarjeta compacta abajo.
      */
     <div className="flex flex-col min-h-screen md:h-screen md:overflow-hidden bg-white">
       {/* ── 1. Header ─────────────────────────────────────────── */}
       <Header onOpenModal={(type) => openModal(type)} />
 
       {/* ── 2. Main content area ──────────────────────────────── */}
-      <main className="relative w-full h-[50vh] md:h-auto md:flex-1 overflow-hidden">
+      <main className="relative w-full h-[46vh] sm:h-[50vh] md:h-auto md:flex-1 overflow-hidden">
         {/* Background hero slider (fills entire main area) */}
         <HeroSlider currentSlide={currentSlide} onSlideChange={setCurrentSlide} />
 
@@ -110,12 +110,12 @@ export default function App() {
         />
       </main>
 
-      {/* Mobile: card rendered below the hero, full-width */}
+      {/* Mobile: tarjeta compacta renderizada debajo del hero */}
       <div className="md:hidden flex-shrink-0">
         <FloatingCard
           division={DIVISIONS[currentSlide]}
           onOpenModal={() => openDivisionModal(currentSlide)}
-          className="mx-4 my-5"
+          className="mx-3.5 my-3.5 sm:mx-5 sm:my-4"
         />
       </div>
 

@@ -49,7 +49,10 @@ export default function HeroSlider({ currentSlide, onSlideChange }: HeroSliderPr
           <img
             src={division.bgImage}
             alt={`${division.titleLine1} ${division.titleLine2}`}
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover transition-[object-position] duration-300"
+            style={{
+              objectPosition: division.imagePosition || 'center center',
+            }}
             loading={index === 0 ? 'eager' : 'lazy'}
             decoding="async"
           />
@@ -65,13 +68,13 @@ export default function HeroSlider({ currentSlide, onSlideChange }: HeroSliderPr
         }}
       />
 
-      {/* ── Control: Anterior ─────────────────────────────────── */}
+      {/* ── Control: Anterior ────────────────────────────────── */}
       <button
         onClick={goPrev}
         aria-label="Diapositiva anterior"
         className="
-          absolute left-4 top-1/2 -translate-y-1/2 z-20
-          w-11 h-11 rounded-full
+          absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20
+          w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full
           bg-white/15 hover:bg-white/30
           border border-white/20
           flex items-center justify-center
@@ -80,7 +83,7 @@ export default function HeroSlider({ currentSlide, onSlideChange }: HeroSliderPr
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60
         "
       >
-        <ChevronLeft size={20} strokeWidth={1.8} />
+        <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1.8} />
       </button>
 
       {/* ── Control: Siguiente ────────────────────────────────── */}
@@ -88,8 +91,8 @@ export default function HeroSlider({ currentSlide, onSlideChange }: HeroSliderPr
         onClick={goNext}
         aria-label="Diapositiva siguiente"
         className="
-          absolute right-4 top-1/2 -translate-y-1/2 z-20
-          w-11 h-11 rounded-full
+          absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20
+          w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full
           bg-white/15 hover:bg-white/30
           border border-white/20
           flex items-center justify-center
@@ -98,14 +101,14 @@ export default function HeroSlider({ currentSlide, onSlideChange }: HeroSliderPr
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60
         "
       >
-        <ChevronRight size={20} strokeWidth={1.8} />
+        <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1.8} />
       </button>
 
       {/* ── Paginador píldora ─────────────────────────────────── */}
       <div
         className="
-          absolute bottom-5 left-1/2 -translate-x-1/2 z-20
-          flex items-center gap-2 px-3 py-2 rounded-full
+          absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 z-20
+          flex items-center gap-1.5 md:gap-2 px-2.5 py-1.5 md:px-3 md:py-2 rounded-full
           bg-black/25 backdrop-blur-sm border border-white/10
         "
         role="tablist"
