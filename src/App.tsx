@@ -9,29 +9,26 @@ import AboutModal from './components/AboutModal'
 import ContactModal from './components/ContactModal'
 import { DIVISIONS } from './data/content'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-export type ModalType =
-  | 'division-0'
-  | 'division-1'
-  | 'division-2'
-  | 'about'
-  | 'contact'
-  | null
+// ─── Types & Dynamic Modal Routing (Open/Closed Principle) ───────────────────
+// ModalType no hardcodea divisiones estáticas; escala dinámicamente según DIVISIONS
+export type DivisionModalKey = `division-${number}`
+export type ModalType = DivisionModalKey | 'about' | 'contact' | null
 
-// ─── Hash <-> ModalType mapping ───────────────────────────────────────────────
+// Mapeo dinámico generado a partir del array DIVISIONS
 const HASH_TO_MODAL: Record<string, ModalType> = {
-  '#real-estate': 'division-0',
-  '#inversiones':  'division-1',
-  '#seguros':      'division-2',
-  '#acerca-de':    'about',
-  '#contacto':     'contact',
+  '#acerca-de': 'about',
+  '#contacto': 'contact',
+  ...Object.fromEntries(
+    DIVISIONS.map((division, index) => [`#${division.id}`, `division-${index}` as ModalType])
+  ),
 }
+
 const MODAL_TO_HASH: Record<string, string> = {
-  'division-0': '#real-estate',
-  'division-1': '#inversiones',
-  'division-2': '#seguros',
-  'about':      '#acerca-de',
-  'contact':    '#contacto',
+  'about': '#acerca-de',
+  'contact': '#contacto',
+  ...Object.fromEntries(
+    DIVISIONS.map((division, index) => [`division-${index}`, `#${division.id}`])
+  ),
 }
 
 // ─── App ──────────────────────────────────────────────────────────────────────
@@ -78,10 +75,11 @@ export default function App() {
   const openDivisionModal = (index: number) =>
     openModal(`division-${index}` as ModalType)
 
-  // Extract division index from modal key
+  // Extrae la división activa a partir de la key dinámica del modal
   const divisionIndex: number | null = modal?.startsWith('division-')
-    ? parseInt(modal.split('-')[1])
+    ? parseInt(modal.slice(9), 10)
     : null
+  const activeDivision = divisionIndex !== null && !isNaN(divisionIndex) ? DIVISIONS[divisionIndex] : null
 
   return (
     /*
@@ -129,9 +127,9 @@ export default function App() {
             <AboutModal onClose={closeModal} onContact={() => openModal('contact')} />
           )}
           {modal === 'contact' && <ContactModal onClose={closeModal} />}
-          {divisionIndex !== null && divisionIndex >= 0 && (
+          {activeDivision && (
             <DivisionModal
-              division={DIVISIONS[divisionIndex]}
+              division={activeDivision}
               onClose={closeModal}
               onContact={() => openModal('contact')}
             />

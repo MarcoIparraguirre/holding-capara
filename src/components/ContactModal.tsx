@@ -1,6 +1,6 @@
-import { useState, type FormEvent } from 'react'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import { CONTACT_INFO } from '../data/content'
+import { useContactForm } from '../hooks/useContactForm'
 
 // ─── ContactModal ─────────────────────────────────────────────────────────────
 // Formulario de contacto institucional accesible.
@@ -11,40 +11,8 @@ interface ContactModalProps {
   onClose: () => void
 }
 
-interface FormState {
-  name: string
-  email: string
-  phone: string
-  division: string
-  message: string
-}
-
-const EMPTY_FORM: FormState = {
-  name: '',
-  email: '',
-  phone: '',
-  division: '',
-  message: '',
-}
-
 export default function ContactModal({ onClose: _ }: ContactModalProps) {
-  const [form, setForm] = useState<FormState>(EMPTY_FORM)
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const set = (field: keyof FormState) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => setForm((prev) => ({ ...prev, [field]: e.target.value }))
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    // Simula envío (conectar a servicio real en producción)
-    setTimeout(() => {
-      setLoading(false)
-      setSubmitted(true)
-    }, 800)
-  }
+  const { form, loading, submitted, handleChange: set, handleSubmit } = useContactForm()
 
   // ── Pantalla de confirmación ─────────────────────────────
   if (submitted) {
